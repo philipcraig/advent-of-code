@@ -5,15 +5,60 @@
         "version": "0.2.0",
         "configurations": [
                 {
-                        "name": "(Windows) Launch",
-                        "type": "cppvsdbg",
+                        "type": "lldb",
                         "request": "launch",
-                        "program": "day_04/target/debug/day_04.exe",
+                        "name": "Debug unit tests in library 'advent_of_code_2020'",
+                        "cargo": {
+                                "args": [
+                                        "test",
+                                        "--no-run",
+                                        "--lib",
+                                        "--package=advent_of_code_2020"
+                                ],
+                                "filter": {
+                                        "name": "advent_of_code_2020",
+                                        "kind": "lib"
+                                }
+                        },
                         "args": [],
-                        "stopAtEntry": false,
-                        "cwd": "${workspaceFolder}",
-                        "environment": [],
-                        "externalConsole": false
+                        "cwd": "${workspaceFolder}"
+                },
+                {
+                        "type": "lldb",
+                        "request": "launch",
+                        "name": "Debug executable 'advent_of_code_2020'",
+                        "cargo": {
+                                "args": [
+                                        "build",
+                                        "--bin=advent_of_code_2020",
+                                        "--package=advent_of_code_2020"
+                                ],
+                                "filter": {
+                                        "name": "advent_of_code_2020",
+                                        "kind": "bin"
+                                }
+                        },
+                        "args": [],
+                        "cwd": "${workspaceFolder}"
+                },
+                {
+                        "type": "lldb",
+                        "request": "launch",
+                        "name": "Debug unit tests in executable 'advent_of_code_2020'",
+                        "cargo": {
+                                "args": [
+                                        "test",
+                                        "--no-run",
+                                        "--bin=advent_of_code_2020",
+                                        "--package=advent_of_code_2020"
+                                ],
+                                "filter": {
+                                        "name": "advent_of_code_2020",
+                                        "kind": "bin"
+                                }
+                        },
+                        "args": [],
+                        "cwd": "${workspaceFolder}"
                 }
         ]
 }

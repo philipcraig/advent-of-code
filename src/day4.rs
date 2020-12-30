@@ -1,33 +1,29 @@
-use std::{ops::RangeInclusive, time::Instant};
+use aoc_runner_derive::aoc;
+
+use std::ops::RangeInclusive;
 
 use regex::Regex;
 
-fn main() {
-    println!("Results for Day 4");
-    println!("============================");
-
-    // Part 1
-    let now = Instant::now();
-    let passports: Vec<_> = INPUT.split("\n\n").collect();
+#[aoc(day4, part1)]
+pub fn part_01(input: &str) -> usize {
+    let passports: Vec<_> = input.split("\n\n").collect();
     let required_fields = vec!["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"];
-
-    let part_01: usize = passports
+    passports
         .iter()
         .map(|&passport| has_required_fields(passport, &required_fields) as usize)
-        .sum();
+        .sum()
+}
 
-    println!("Part 1: {:?} ({:.2?})", part_01, now.elapsed());
+#[aoc(day4, part2)]
+pub fn part_02(input: &str) -> usize {
+    let passports: Vec<_> = input.split("\n\n").collect();
+    let required_fields = vec!["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"];
 
-    // Part 2
-    let now = Instant::now();
-
-    let part_02: usize = passports
+    passports
         .iter()
         .filter(|&passport| has_required_fields(passport, &required_fields))
         .map(|&passport| has_valid_fields(passport) as usize)
-        .sum();
-
-    println!("Part 2: {:?} ({:.2?})", part_02, now.elapsed());
+        .sum()
 }
 
 fn has_required_fields(passport: &str, required_fields: &Vec<&str>) -> bool {
@@ -80,5 +76,3 @@ fn is_in_range_suffix(value: &str, range: RangeInclusive<usize>, suffix: &str) -
         .strip_suffix(suffix)
         .map_or(false, |num| is_in_range(num, range))
 }
-
-const INPUT: &str = include_str!("../input");

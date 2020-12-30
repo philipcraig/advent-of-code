@@ -1,5 +1,17 @@
+use aoc_runner_derive::{aoc, aoc_generator};
 use std::collections::HashSet;
 
+#[aoc_generator(day1)]
+fn parse_input(input: &str) -> HashSet<u64> {
+    input
+        .lines()
+        .map(|l| l.trim())
+        .filter(|l| !l.is_empty())
+        .map(|l| l.parse().unwrap())
+        .collect()
+}
+
+#[aoc(day1, part1)]
 pub fn part_01(input: &HashSet<u64>) -> u64 {
     for x in input {
         let y = 2020 - x;
@@ -11,6 +23,7 @@ pub fn part_01(input: &HashSet<u64>) -> u64 {
     0
 }
 
+#[aoc(day1, part2)]
 pub fn part_02(input: &HashSet<u64>) -> u64 {
     for x in input {
         for y in input {

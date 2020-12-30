@@ -1,6 +1,4 @@
-#[macro_use]
-extern crate lazy_static;
-extern crate regex;
+use aoc_runner_derive::{aoc, aoc_generator};
 
 use regex::Regex;
 
@@ -10,17 +8,29 @@ macro_rules! err {
 
 use std::{error::Error, str::FromStr};
 
+#[aoc_generator(day2)]
+fn parse_input(input: &str) -> Vec<Line> {
+    input
+        .lines()
+        .map(|l| l.trim())
+        .filter(|l| !l.is_empty())
+        .map(|l| Line::from_str(l).unwrap())
+        .collect()
+}
+
+#[aoc(day2, part1)]
 pub fn part_01(input: &Vec<Line>) -> usize {
     input.iter().filter(|l| is_valid_part1(*l)).count()
 }
 
+#[aoc(day2, part2)]
 pub fn part_02(input: &Vec<Line>) -> usize {
     input.iter().filter(|l| is_valid_part2(*l)).count()
 }
 
 fn is_valid_part1(l: &Line) -> bool {
     let c = l.password.matches(l.valid).count();
-    
+
     c >= l.lower && c <= l.upper
 }
 
@@ -68,5 +78,32 @@ impl FromStr for Line {
             valid: caps["valid"].parse()?,
             password: caps["password"].parse()?,
         })
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_data_part_01() {
+        let data = "
+1-3 a: abcde
+1-3 b: cdefg
+2-9 c: ccccccccc
+";
+
+        assert_eq!(part_01(&parse_input(data)), 2)
+    }
+
+    #[test]
+    fn test_data_part_02() {
+        let data = "
+1-3 a: abcde
+1-3 b: cdefg
+2-9 c: ccccccccc
+";
+
+        assert_eq!(part_02(&parse_input(data)), 1)
     }
 }
