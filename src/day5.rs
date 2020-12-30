@@ -12,8 +12,11 @@ pub fn part_1(input: &Vec<usize>) -> usize {
 
 #[aoc(day5, part2)]
 pub fn part_2(input: &Vec<usize>) -> usize {
-    2
-}
+    let mut seat_ids = input.clone();
+    seat_ids.sort();
+    let missing_id = seat_ids.windows(2).find(|window| !(window[0] + 1 == window[1])).unwrap();
+    let missing_id = missing_id[1] - 1;
+    missing_id}
 
 fn get_seat_ids(seats: Vec<&str>) -> Vec<usize> {
     seats
