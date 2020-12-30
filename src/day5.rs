@@ -6,12 +6,12 @@ fn parse_input(input: &str) -> Vec<usize> {
 }
 
 #[aoc(day5, part1)]
-pub fn part_01(input: &Vec<usize>) -> usize {
+pub fn part_1(input: &Vec<usize>) -> usize {
     *input.iter().max().unwrap()
 }
 
 #[aoc(day5, part2)]
-pub fn part_02(input: &Vec<usize>) -> usize {
+pub fn part_2(input: &Vec<usize>) -> usize {
     2
 }
 

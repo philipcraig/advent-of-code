@@ -12,7 +12,7 @@ fn parse_input(input: &str) -> HashSet<u64> {
 }
 
 #[aoc(day1, part1)]
-pub fn part_01(input: &HashSet<u64>) -> u64 {
+pub fn part_1(input: &HashSet<u64>) -> u64 {
     for x in input {
         let y = 2020 - x;
         if input.contains(&y) {
@@ -24,7 +24,7 @@ pub fn part_01(input: &HashSet<u64>) -> u64 {
 }
 
 #[aoc(day1, part2)]
-pub fn part_02(input: &HashSet<u64>) -> u64 {
+pub fn part_2(input: &HashSet<u64>) -> u64 {
     for x in input {
         for y in input {
             if x + y > 2020 {

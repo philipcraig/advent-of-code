@@ -19,12 +19,12 @@ fn parse_input(input: &str) -> Vec<Line> {
 }
 
 #[aoc(day2, part1)]
-pub fn part_01(input: &Vec<Line>) -> usize {
+pub fn part_1(input: &Vec<Line>) -> usize {
     input.iter().filter(|l| is_valid_part1(*l)).count()
 }
 
 #[aoc(day2, part2)]
-pub fn part_02(input: &Vec<Line>) -> usize {
+pub fn part_2(input: &Vec<Line>) -> usize {
     input.iter().filter(|l| is_valid_part2(*l)).count()
 }
 
@@ -86,24 +86,24 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_data_part_01() {
+    fn test_data_part_1() {
         let data = "
 1-3 a: abcde
 1-3 b: cdefg
 2-9 c: ccccccccc
 ";
 
-        assert_eq!(part_01(&parse_input(data)), 2)
+        assert_eq!(part_1(&parse_input(data)), 2)
     }
 
     #[test]
-    fn test_data_part_02() {
+    fn test_data_part_2() {
         let data = "
 1-3 a: abcde
 1-3 b: cdefg
 2-9 c: ccccccccc
 ";
 
-        assert_eq!(part_02(&parse_input(data)), 1)
+        assert_eq!(part_2(&parse_input(data)), 1)
     }
 }

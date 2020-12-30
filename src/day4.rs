@@ -5,7 +5,7 @@ use std::ops::RangeInclusive;
 use regex::Regex;
 
 #[aoc(day4, part1)]
-pub fn part_01(input: &str) -> usize {
+pub fn part_1(input: &str) -> usize {
     let passports: Vec<_> = input.split("\n\n").collect();
     passports
         .iter()
@@ -14,7 +14,7 @@ pub fn part_01(input: &str) -> usize {
 }
 
 #[aoc(day4, part2)]
-pub fn part_02(input: &str) -> usize {
+pub fn part_2(input: &str) -> usize {
     let passports: Vec<_> = input.split("\n\n").collect();
 
     passports

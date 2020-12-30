@@ -1,12 +1,12 @@
 use aoc_runner_derive::aoc;
 
 #[aoc(day3, part1)]
-pub fn part_01(input: &str) -> usize {
+pub fn part_1(input: &str) -> usize {
     count_trees(&input, 3, 1)
 }
 
 #[aoc(day3, part2)]
-pub fn part_02(input: &str) -> usize {
+pub fn part_2(input: &str) -> usize {
     SLOPES
         .iter()
         .map(|slopes| count_trees(&input, slopes[0], slopes[1]))
