@@ -7,27 +7,25 @@ use regex::Regex;
 #[aoc(day4, part1)]
 pub fn part_01(input: &str) -> usize {
     let passports: Vec<_> = input.split("\n\n").collect();
-    let required_fields = vec!["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"];
     passports
         .iter()
-        .map(|&passport| has_required_fields(passport, &required_fields) as usize)
+        .map(|&passport| has_required_fields(passport) as usize)
         .sum()
 }
 
 #[aoc(day4, part2)]
 pub fn part_02(input: &str) -> usize {
     let passports: Vec<_> = input.split("\n\n").collect();
-    let required_fields = vec!["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"];
 
     passports
         .iter()
-        .filter(|&passport| has_required_fields(passport, &required_fields))
+        .filter(|&passport| has_required_fields(passport))
         .map(|&passport| has_valid_fields(passport) as usize)
         .sum()
 }
 
-fn has_required_fields(passport: &str, required_fields: &Vec<&str>) -> bool {
-    required_fields
+fn has_required_fields(passport: &str) -> bool {
+    REQUIRED_FIELDS
         .iter()
         .all(|&required| passport.contains(required))
 }
@@ -76,3 +74,5 @@ fn is_in_range_suffix(value: &str, range: RangeInclusive<usize>, suffix: &str) -
         .strip_suffix(suffix)
         .map_or(false, |num| is_in_range(num, range))
 }
+
+const REQUIRED_FIELDS: &'static [&'static str] = &["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"];
